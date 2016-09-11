@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+
+
+    <title>CodePen - Dennis Ritchie Tribute</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+        <style>
+      /* Page CSS */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  margin-top: 50px;
+}
+
+#social_buttons {
+  margin-right: 4%;
+}
+
+/* Image CSS */
+
+#dennis_pic:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.smaller {
+  max-width: 5%;
+  max-height: auto;
+}
+
+#social_bar {
+  font-size: 40px;
+  background: black;
+}
+
+#top_bar {
+  background: url("https://scontent-ord1-1.xx.fbcdn.net/v/t1.0-9/14232578_1288687714497373_1905599909816704818_n.jpg?oh=4257b77708b51b520c2052685e424e27&oe=587BC532") no-repeat     center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: black;
+}
+
+
+/* Paragraph & Text CSS */
+
+.title_text {
+  text-shadow: 1px 1px 2px white, 0 0 25px     white, 0 0 5px white;
+  font-weight: bold !important;
+}
+
+.navbar {
+  min-height:15px;
+}
+
+.inner-paragraph {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.indented {
+  text-indent: 35px;
+}
+
+
+/* Modal (for image enlarger) CSS */
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: hidden;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/ opacity */
+}
+
+
+/* Modal Content (Image) */
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-height: 90%;
+  max-width: 80%;
+  height: auto;
+  width: auto;
+  
+}
+
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+
+/* Add Animation - Zoom in the Modal */
+
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0)
+  }
+  to {
+    transform: scale(1)
+  }
+}
+
+
+/* The Close Button */
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* 100% Image Width on Smaller Screens */
+
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+
+/* Used to prevent scrolling while modal is open */
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+    </style>
+
+    
+    
+    
+  </head>
+
+  <body translate="no" >
+
+    <!-- Body begins here -->
+<div id="social_bar" class="navbar navbar-default navbar-fixed-top text-right">
+  <div id="social_buttons">
+  <a href="https://github.com/cswilson14" target="_blank"><i class="fa fa-github-square" aria-hidden="true"></i></a>
+
+  <a href="https://www.linkedin.com/in/christopher-wilson-508119127?trk=hp-identity-name" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+  </div>
+</div>
+<div id="top_bar" class="jumbotron text-center">
+  <h1 class="title_text">Dennis Ritchie</h1>
+  <p class="title_text">Computer Scientist, Inventor of C</p>
+  <img id="dennis_pic" class="img-responsive img-thumbnail center-block" src="https://upload.wikimedia.org/wikipedia/commons/2/23/Dennis_Ritchie_2011.jpg" alt="Dennis Ritchie - Japan Prize Foundation Ceremony - May 2011" width="153" height="115">
+  <div id="photos_modal" class="modal">
+    <!-- "X" close button for modal -->
+    <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+  </div>
+</div>
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#home">Home</a> </li>
+    <li><a data-toggle="tab" href="#timeline">Timeline</a></li>
+    <li><a data-toggle="tab" href="#about">About</a></li>
+  </ul>
+</div>
+
+<div class="tab-content container-fluid">
+  <div id="home" class="tab-pane fade in active">
+    <h3>Introduction</h3>
+    <div class="well well-sm inner-paragraph">
+      <p class="indented">In recent years, technology has become more and more seamlessly integrated into our daily lives. The capability of both hardware and software has been increasing at an accelerating rate. Many people have contributed to these advancements, but few
+        people have had as vital of an impact as a man named Dennis Ritchie. Dennis' contributions to the field of computer science are some of the most influential in history. Dennis is most known for his work on the C programming language, which is
+        still widely used today for many applications. He is also known for his contributions toward the UNIX operating system, which many of today's operating systems are based on.</p>
+    </div>
+    <h3>The UNIX Operating System</h3>
+    <div class="well well-sm inner-paragraph">
+      <p class="indented">
+        Dennis Ritchie started his technical career working for AT&T Bell Labs in 1967. This is where he met and worked with a man named Ken Thompson. Ritchie and Thompson worked together in creating the operating system known as UNIX. This operating system was
+        revolutionary, and had many features that prior operating systems lacked, in a much more streamlined way. UNIX had a multi-user environment, a file system, text processing capabilities, process forking, regular expression matching and many other
+        capabilities. <a href="https://en.wikipedia.org/wiki/Multics" target="_blank">Multics</a> (Multiplexed Information and Computing Service) is the name of the operating system that Bell Labs used before UNIX's creation. It was commonly said
+        that Multics was over-designed and too slow as a result. This problem is what led Ken Thompson and Dennis Ritchie to venture into UNIX. UNIX was first written in assembly language (PDP-7), but was quickly re-written in C after the language was
+        created, due to its simplicity.
+      </p>
+      <p class="indented">
+        Today, we can see the impact that UNIX had on the world of systems programming in nearly every operating system. BSD systems are directly UNIX-based and are still used in government and healthcare organizations. <a href="https://en.wikipedia.org/wiki/Linux"
+          target="_blank">Linux</a> is a versatile operating system and is a derivitive of UNIX . Apple's Mac OS, iOS, and even Google's Android are UNIX based as well.
+      </p>
+    </div>
+    <h3>The C Programming Language</h3>
+    <div class="well well-sm inner-paragraph">
+      <p class="indented">
+        The programming language C, invented by Dennis Ritchie, is a general purpose programming language that was renowned for its efficient mapping to machine/assembly instructions. This was a major accomplishment, because programs written in assembly code
+        tended to be extremely difficult to read and disorganized. C programming changed the way programs were written, and included many features that are still used in almost every programming language to this day. The C language is commonly used today,
+        especially in the field of systems programming--this means for operating systems, firmware, and other applications where efficiency is extremely important.</p>
+      <p class="indented">Ritchie also was well known for the book which he co-authored with Brian Kernighan called <i><a href="https://en.wikipedia.org/wiki/The_C_Programming_Language" target="_blank">The C Programming Language</a></i>. For a long time, this book was essentially
+        known as <b><i>the</i></b> manual for C. To this day, many computer science college courses assign this book as a mandatory reading. This book is sometimes nicknamed the "bible of C programming" because it details everything that one needs to
+        know to program well in C.
+      </p>
+    </div>
+    <h3>Education</h3>
+    <div class="well well-sm inner-paragraph">
+      <p>
+        <ul>
+          <li><b>High School</b>: Summit High School (Summit, New Jersey)</li>
+          <li><b>College</b>: Harvard University (Cambridge, Massachusetts)
+        </ul>
+      </p>
+    </div>
+  </div>
+  <div id="timeline" class="tab-pane fade">
+    <h3>Timeline</h3>
+    <div class="well well-sm inner-paragraph">
+      <p>
+        <ul>
+          <li>1941: Born (Bronxville, NY)</li>
+          <li>1963: Graduated from Harvard University with a BS in Physics</li>
+          <li>1967: Began work at Bell Labs</li>
+          <li>1968: Received a doctorate in mathematics from Harvard University</li>
+          <li>1971: Invented UNIX operating system with Ken Thompson</li>
+          <li>1972: Invented C programming language with Brian Kernighan</li>
+          <li>1973: Rewrote UNIX in C</li>
+          <li>1983: Received Turing Award for implementation of UNIX operating system</li>
+          <li>1990: Received the IEEE Richard W. Hamming Medal from the Institute of Electrical and Electronics Engineers for UNIX operating system and C programming language</li>
+          <li>1997: Made a fellow of the Computer History Museum for co-creation of UNIX and for development of the C programming language</li>
+          <li>1999: Received the National Medal of Technology from president Bill Clinton for UNIX operating system and C programming language</li>
+          <li>2005: Received Achievement Award from Industrial Research Institute for contribution to science, technology, society, for UNIX operating system</li>
+          <li>2011: Awarded Japan Prize for Information and Communications for developemnt of UNIX operating system</li>
+          <li>2011: Ritchie passed away in his home in New Jersey</li>
+          <li>2012: Fedora 16 Linux Distribution released one month after Ritchie's death, dedicated to his memory</li>
+      </p>
+    </div>
+  </div>
+  <div id="about" class="tab-pane fade">
+    <h3>About</h3>
+    <p class="indented inner-paragraph">
+      This website serves as a tribute to Dennis Ritchie, an influential man in the field of computer science.  To read more about Dennis Ritchie, <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie" target="_blank">check out his wikipedia page.</a>
+    </p>
+  </div>
+</div>
+<hr>
+<div class="container-fluid">
+  
+  <p class="text-center">Written and coded by Chris Wilson.</p>
+</div>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+        <script>
+      // Get the modal
+var modal = document.getElementById('photos_modal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('dennis_pic');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function() {
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+  $('body').addClass('no-scroll')
+  $('body').bind('touchmove', function(e){e.preventDefault()})
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks anywhere on the modal, close the modal
+modal.onclick = function() {
+  modal.style.display = "none";
+  $('body').removeClass('no-scroll')
+  $('body').unbind('touchmove')
+}
+
+// When the user presses escape, close the modal
+jQuery(document).keypress(function(e) {
+  if (e.keyCode == 27) {
+   jQuery("#photos_modal").modal('hide');
+  }
+ });
+      //# sourceURL=pen.js
+    </script>
+
+    
+    
+    
+  </body>
+</html>
+ 
